@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if params[:user]["password"] == params[:user]["password_confirmation"] && @user.save
       redirect_to @user
     else
-      flash.now[:error] = 'Password and confirmation must match'
+      flash.now[:error] = 'There are several potential reasons why this failed'
       render :new
     end
   end
