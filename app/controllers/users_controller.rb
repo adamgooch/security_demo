@@ -10,8 +10,12 @@ class UsersController < ApplicationController
     @user = User.new
     @user.email = params[:user]["email"]
     @user.password_digest = params[:user]["password"]
-    @user.save
-    redirect_to @user
+    if params[:user]["password"] == params[:user]["password_confirmation"] && @user.save
+      redirect_to @user
+    else
+      flash.now[:error] = 'Password and confirmation must match'
+      render :new
+    end
   end
 
   def show
