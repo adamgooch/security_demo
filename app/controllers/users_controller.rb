@@ -10,10 +10,16 @@ class UsersController < ApplicationController
     @user = User.new
     @user.email = params[:user]["email"]
     @user.password_digest = params[:user]["password"]
-    if params[:user]["password"] == params[:user]["password_confirmation"] && @user.save
+    if params[:user]["password"] != params[:user]["password_confirmation"]
+      flash.now[:error] = 'Failed: Password does not match confirmation'
+      render :new
+    elsif User.find_by_email @user.email
+      flash.now[:error] = 'Failed: Email taken'
+      render :new
+    elsif @user.save
       redirect_to @user
     else
-      flash.now[:error] = 'There are several potential reasons why this failed'
+      flash.now[:error] = 'Failed: Email bad format'
       render :new
     end
   end
