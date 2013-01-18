@@ -9,17 +9,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new
     @user.email = params[:user]["email"]
-    @user.password_digest = params[:user]["password"]
-    if params[:user]["password"] != params[:user]["password_confirmation"]
-      flash.now[:error] = 'Failed: Password does not match confirmation'
-      render :new
-    elsif User.find_by_email @user.email
-      flash.now[:error] = 'Failed: Email taken'
-      render :new
-    elsif @user.save
+    @user.password = params[:user]["password"]
+    @user.password_confirmation = params[:user]["password_confirmation"]
+    @user.password_digest = @user.password
+    if @user.save
+      flash[:success] = "Welcome to the Community!"
       redirect_to @user
     else
-      flash.now[:error] = 'Failed: Email bad format'
       render :new
     end
   end

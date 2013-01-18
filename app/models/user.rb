@@ -1,10 +1,14 @@
 class User < ActiveRecord::Base
+  attr_accessor :password
   attr_accessible :email, :first_name, :last_name, :password_digest
 
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, :uniqueness => { :case_sensitive => false },
-                    :presence => { :message => "Your email is used to save your greeting." },
-                    :format => { :with  => email_regex }
-  validates_presence_of :password_digest
+                    :presence => true,
+                    :format => { :with  => email_regex, :message => "is improperly formatted. We use the email to uniquely identify you. We will not sell it or send you spam" }
+  validates :password, :length => { :minimum => 6 },
+                       :presence => true,
+                       :confirmation => true
+  validates :password_confirmation, :presence => true
 end
