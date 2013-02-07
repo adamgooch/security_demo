@@ -11,4 +11,17 @@ class User < ActiveRecord::Base
                        :presence => true,
                        :confirmation => true
   validates :password_confirmation, :presence => true
+
+  def self.authenticate(email, password)
+    user = find_by_email(email.downcase)
+    if user && user.password_digest == encrypt_password(password)
+      return user
+    else
+      return nil
+    end
+  end
+
+  def self.encrypt_password(plain_text)
+    plain_text
+  end
 end

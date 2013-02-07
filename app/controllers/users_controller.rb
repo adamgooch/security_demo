@@ -7,8 +7,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    @user.password_digest = encrypt_password(@user.password)
+    @user = User.new
+    @user.email = params[:user][:email].downcase
+    @user.password_digest = User.encrypt_password(params[:user][:password])
     if @user.save
       flash[:success] = "Welcome to the Community!"
       redirect_to @user
@@ -19,11 +20,5 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id params[:id]
-  end
-
-  private
-
-  def encrypt_password(plain_text)
-    plain_text
   end
 end
