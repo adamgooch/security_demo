@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new
+    @user = User.new( params[:user] )
     @user.email = params[:user][:email].downcase
-    @user.password_digest = User.encrypt_password(params[:user][:password])
+    @user.password_digest = encrypt_password( @user.password )
     if @user.save
       flash[:success] = "Welcome to the Community!"
       redirect_to @user
@@ -20,5 +20,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id params[:id]
+    if( signed_in? && current_user?( @user ) )
+      flash.now[:success] = "Signed In!"
+    else
+      flash.now[:error] = "You are not allowed here!"
+    end
   end
 end
