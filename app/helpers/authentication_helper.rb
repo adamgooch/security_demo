@@ -5,10 +5,13 @@ module AuthenticationHelper
     ( user && user.password_digest == encrypt_password( submitted_password ) ) ? user : nil
   end
 
-  def authenticate_with_cookie( id )
+  def authenticate_with_cookie( id, email = nil )
     user = User.find_by_id( id )
-    user ? user : nil
-    #user && user.email == email ? user : nil
+    if Config::SECURE
+      user && user.email == email ? user : nil
+    else
+      user ? user : nil
+    end
   end
 
   def encrypt_password( plain_text )
@@ -16,8 +19,10 @@ module AuthenticationHelper
   end
 
   def login( user )
-    cookies[:remember_token] = user.id
-    #cookies.signed[:remember_token] = [user.id, user.email]
+    cookies[:remember_token] = user.id unless Config::SECURE || Config::SSL
+    cookies.signed[:remember_token] = { secure: true, value: [ user.id, user.email ] } if Config::SSL
+    cookies.signed[:remember_token] = { value: [ user.id, user.email ] } if Config::SECURE
+    #cookies.signed[:remember_token] = { path: '/users', value: [ user.id, user.email ] } if Config::SECURE
     #current_user = user
   end
 
@@ -45,13 +50,16 @@ module AuthenticationHelper
   private
 
     def user_from_remember_token
-      authenticate_with_cookie( remember_token )
-      #authenticate_with_cookie( *remember_token )
+      authenticate_with_cookie( remember_token ) unless Config::SECURE
+      authenticate_with_cookie( *remember_token ) if Config::SECURE
       #authenticate_with_cookie( session[:user_id] )
     end
 
     def remember_token
-      cookies[:remember_token] || nil
-      #cookies.signed[:remember_token] || [nil, nil]
+      if Config::SECURE
+        cookies.signed[:remember_token] || [nil, nil]
+      else
+        cookies[:remember_token] || nil
+      end
     end
 end
