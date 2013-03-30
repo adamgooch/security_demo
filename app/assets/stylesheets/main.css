@@ -1,0 +1,109 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  background-color: #444;
+}
+.container {
+  margin: 0px auto;
+}
+.main-header {
+  background-color:#000000;
+  background-image: -webkit-radial-gradient(50% 10%, ellipse cover, #000000, #444444 73%);
+  text-align: center;
+}
+
+/************* NAV BAR ********************/
+.navigate li {
+  float: left;
+  position: relative;
+  list-style: none;
+}
+/* main level link */
+.navigate a {
+  font: 16px verdana, sans-serif;
+  font-weight: normal;
+  padding:  0px 20px 8px 20px;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+/* main level link hover */
+.navigate li:hover > a {
+  color: #99ffff;
+}
+/* sub levels link hover */
+.navigate li:hover li a {
+  background: none;
+  border: none;
+  color: #fff;
+}
+.navigate ul a:hover {
+  color: #99ffff !important;
+}
+/* dropdown */
+.navigate li:hover > ul {
+  display: block;
+  text-align: left;
+}
+/* level 2 list */
+.navigate ul {
+  display: none;
+
+  width: 150px;
+  position: absolute;
+  top: 27px;
+  left: 0;
+  background: #000;
+
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+  -moz-box-shadow: 0 1px 3px rgba(0,0,0, .3);
+  box-shadow: 0 1px 3px rgba(0,0,0, .3);
+}
+.navigate ul li {
+  float: none;
+  margin: 0;
+  padding: 0;
+}
+.navigate ul a {
+  font-weight: normal;
+}
+/* rounded corners of first and last link */
+.navigate ul li:first-child > a {
+  -webkit-border-top-left-radius: 9px;
+  -moz-border-radius-topleft: 9px;
+
+  -webkit-border-top-right-radius: 9px;
+  -moz-border-radius-topright: 9px;
+}
+.navigate ul li:last-child > a {
+  -webkit-border-bottom-left-radius: 9px;
+  -moz-border-radius-bottomleft: 9px;
+
+  -webkit-border-bottom-right-radius: 9px;
+  -moz-border-radius-bottomright: 9px;
+}
+/* clearfix */
+.navigate:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.navigate {
+  display: inline-block;
+}
+
+#main_footer {
+  text-align: center;
+  padding: 5px;
+  border-top: 2px solid #999;
+  color: #fff
+}

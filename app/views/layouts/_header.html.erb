@@ -1,7 +1,7 @@
-<header>
-  <%= link_to "The Community", root_path %>
-  <nav>
-    <ul>
+<header class='main-header'>
+  <%= image_tag('ramekinLogo.png') %>
+  <nav class="main-menu">
+    <ul class="navigate">
       <li><%= link_to "Home", root_path %></li>
       <% if signed_in? %>
         <li><%= link_to "Profile", current_user %></li>
