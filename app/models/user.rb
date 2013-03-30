@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
                        :presence => true,
                        :confirmation => true
   validates :password_confirmation, :presence => true
+
 end
