@@ -1,15 +1,14 @@
-<h1>Enter The Community</h1>
+<h1>Login</h1>
 <%= form_for :session, :url => post_session_path do |f| %>
   <div>
     <%= f.label :email %> <br />
-    <%= f.text_field :email, :placeholder => 'email', :value => @email, :required => true %> <br />
+    <%= f.text_field :email, :placeholder => 'email', :value => @email, :required => true, :class => 'text-field' %> <br />
   </div>
-  <p><%= @whatever %></p>
   <div>
     <%= f.label :password %> <br />
-    <%= f.password_field :password, :placeholder => 'password', :required => true %> <br />
+    <%= f.password_field :password, :placeholder => 'password', :required => true, :class => 'text-field' %> <br />
   </div>
-  <div>
-    <%= f.submit "Login" %> <br />
+  <div class='center'>
+    <%= f.submit 'Login', :class => 'button' %> <br />
   </div>
 <% end %>
