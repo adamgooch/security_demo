@@ -9,9 +9,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new( params[:user] )
     @user.email = params[:user][:email].downcase
-    @user.password_digest = encrypt_password( @user.password )
+    @user.salt = make_salt
+    @user.password_digest = encrypt_password( @user.password, @user.salt )
     if @user.save
       flash[:success] = "Welcome to Ramekin Technologies!"
+      login( @user )
       redirect_to @user
     else
       render :new

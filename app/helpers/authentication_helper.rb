@@ -2,7 +2,7 @@ module AuthenticationHelper
 
   def authenticate( email, submitted_password )
     user = User.find_by_email( email.downcase )
-    ( user && user.password_digest == encrypt_password( submitted_password ) ) ? user : nil
+    ( user && user.password_digest == encrypt_password( submitted_password, user.salt ) ) ? user : nil
   end
 
   def authenticate_with_cookie( id, email = nil )
@@ -14,13 +14,23 @@ module AuthenticationHelper
     end
   end
 
-  def encrypt_password( plain_text )
-    plain_text
+  def encrypt_password( plain_text, salt )
+    return plain_text unless Config::SECURE
+    derived_key = PBKDF2.new do |key|
+      key.password = plain_text
+      key.salt = salt
+      key.iterations = 10000
+    end
+    return derived_key.hex_string
+  end
+
+  def make_salt
+    return SecureRandom.hex( 32 )
   end
 
   def login( user )
     cookies[:remember_token] = user.id unless Config::SECURE || Config::SSL
-    cookies.signed[:remember_token] = { secure: true, value: [ user.id, user.email ] } if Config::SSL
+    cookies.signed[:remember_token] = { secure: true, value: [ user.id, user.salt ] } if Config::SSL
     cookies.signed[:remember_token] = { value: [ user.id, user.email ] } if Config::SECURE
     #cookies.signed[:remember_token] = { path: '/users', value: [ user.id, user.email ] } if Config::SECURE
     #current_user = user
