@@ -6,9 +6,10 @@ class User < ActiveRecord::Base
 
   validates :email, :uniqueness => { :case_sensitive => false },
                     :presence => true,
-                    :format => { :with  => email_regex, :message => "is improperly formatted. We use the email to uniquely identify you. We will not sell it or send you spam" }
+                    :format => { :with  => email_regex, :message => "is improperly formatted. We use your email address to uniquely identify you. We will not sell it or send you spam" }
   validates :password, :length => { :minimum => 6 },
                        :presence => true,
                        :confirmation => true
   validates :password_confirmation, :presence => true
+  validates :salt, :presence => true
 end

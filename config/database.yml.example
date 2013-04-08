@@ -7,9 +7,10 @@ development:
   adapter: postgresql
   encoding: unicode
   database: rails_security_demo_db_development
-  username: agooch
+  username:
   pool: 5
   timeout: 5000
+  host: localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -18,9 +19,10 @@ test:
   adapter: postgresql
   encoding: unicode
   database: rails_security_demo_db_test
-  username: agooch
+  username:
   pool: 5
   timeout: 5000
+  host: localhost
 
 production:
   adapter: postgresql

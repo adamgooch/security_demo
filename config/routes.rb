@@ -1,10 +1,11 @@
 SecurityDemo::Application.routes.draw do
   match '/signup', to: 'users#new', :via => :get
   match '/signup', to: 'users#create', :via => :post, :as => :post_signup
-  match '/login', to: 'sessions#new'
+  match '/login', to: 'sessions#new', :via => :get
+  match '/login', to: 'sessions#create', :via => :post, :as => :post_session
   match '/logout', to: 'sessions#destroy'
   resources :users, :except => [:new, :create]
-  resources :sessions, :only => [:new, :create, :destroy]
+  resources :sessions, :only => [:destroy]
 
   # Sample resource route with options:
   #   resources :products do

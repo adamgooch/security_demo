@@ -1,2 +1,5 @@
-<h1>Hello <%= @user.email %></h1>
-<p>Your password is <%= @user.password_digest %></p>
+<% if signed_in? && current_user?( @user ) %>
+  <h1>Hello, thanks for stopping by!</h1>
+<% else %>
+  <h1>Why are you trying to view this page?</h2>
+<% end %>

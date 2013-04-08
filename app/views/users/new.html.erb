@@ -1,19 +1,19 @@
 <h1>Sign Up!</h1>
+<%= render 'shared/error_messages' %>
 <%= form_for @user, :url => post_signup_path do |f| %>
-  <%= render 'shared/error_messages' %>
   <div>
-    <%= f.label :email %> <br />
-    <%= f.text_field :email, :required => true %> <br />
+    <%= f.label :email %>
+    <%= f.text_field :email, :required => true, :placeholder => 'email', :class=> 'text-field' %>
   </div>
   <div>
-    <%= f.label :password %> <br />
-    <%= f.password_field :password, :required => true %> <br />
+    <%= f.label :password %>
+    <%= f.password_field :password, :required => true, :placeholder => 'password', :class => 'text-field' %>
   </div>
   <div>
-    <%= f.label :password_confirmation, "Confirmation" %> <br />
-    <%= f.password_field :password_confirmation, :required => true %> <br />
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation, :required => true, :placeholder => 'password confirmation', :class => 'text-field' %>
   </div>
-  <div>
-    <%= f.submit "Create Account" %> <br />
+  <div class='center'>
+    <%= f.submit "Create Account", :class => 'button' %>
   </div>
 <% end %>
