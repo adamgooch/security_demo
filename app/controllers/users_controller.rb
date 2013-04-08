@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_id params[:id]
     if( signed_in? && current_user?( @user ) )
-      flash.now[:success] = "Signed In!"
+      flash.now[:success] = "You are signed In!"
     else
       flash.now[:error] = "You are not allowed here!"
     end
