@@ -11,7 +11,7 @@ describe "Users" do
           fill_in "Confirmation", :with => "12345"
           click_button
           response.should render_template('users/new')
-          response.should have_selector("div#error_explanation", :content => "1 error")
+          response.should have_selector("div#error-explanation", :content => "1 error")
         end.should_not change(User, :count)
       end
 
@@ -23,7 +23,7 @@ describe "Users" do
           fill_in "Confirmation", :with => "123456"
           click_button
           response.should render_template('users/new')
-          response.should have_selector("div#error_explanation", :content => "1 error")
+          response.should have_selector("div#error-explanation", :content => "1 error")
         end.should_not change(User, :count)
       end
 
@@ -35,7 +35,7 @@ describe "Users" do
           fill_in "Confirmation", :with => "12345"
           click_button
           response.should render_template('users/new')
-          response.should have_selector("div#error_explanation", :content => "1 error")
+          response.should have_selector("div#error-explanation", :content => "1 error")
         end.should_not change(User, :count)
       end
 
@@ -52,7 +52,7 @@ describe "Users" do
           fill_in "Confirmation", :with => "123456"
           click_button
           response.should render_template('users/new')
-          response.should have_selector("div#error_explanation", :content => "1 error")
+          response.should have_selector("div#error-explanation", :content => "1 error")
         end.should_not change(User, :count)
       end
     end
@@ -66,7 +66,7 @@ describe "Users" do
           fill_in "Confirmation", :with => "123456"
           click_button
           response.should render_template('users/show')
-          response.should have_selector("div.flash.success", :content => "Welcome to the Community!")
+          response.should have_selector("div.flash.success", :content => "You are signed in")
         end.should change(User, :count).by(1)
       end
     end

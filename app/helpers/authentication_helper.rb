@@ -7,7 +7,7 @@ module AuthenticationHelper
 
   def authenticate_with_cookie( id, email = nil )
     user = User.find_by_id( id )
-    if Config::SECURE
+    if RbConfig::SECURE
       user && user.email == email ? user : nil
     else
       user ? user : nil
@@ -15,7 +15,7 @@ module AuthenticationHelper
   end
 
   def encrypt_password( plain_text, salt )
-    return plain_text unless Config::SECURE
+    return plain_text unless RbConfig::SECURE
     derived_key = PBKDF2.new do |key|
       key.password = plain_text
       key.salt = salt
@@ -29,10 +29,10 @@ module AuthenticationHelper
   end
 
   def login( user )
-    cookies[:remember_token] = user.id unless Config::SECURE || Config::SSL
-    cookies.signed[:remember_token] = { secure: true, value: [ user.id, user.salt ] } if Config::SSL
-    cookies.signed[:remember_token] = { value: [ user.id, user.email ] } if Config::SECURE
-    #cookies.signed[:remember_token] = { path: '/users', value: [ user.id, user.email ] } if Config::SECURE
+    cookies[:remember_token] = user.id unless RbConfig::SECURE || RbConfig::SSL
+    cookies.signed[:remember_token] = { secure: true, value: [ user.id, user.salt ] } if RbConfig::SSL
+    cookies.signed[:remember_token] = { value: [ user.id, user.email ] } if RbConfig::SECURE
+    #cookies.signed[:remember_token] = { path: '/users', value: [ user.id, user.email ] } if RbConfig::SECURE
     #current_user = user
   end
 
@@ -60,13 +60,13 @@ module AuthenticationHelper
   private
 
     def user_from_remember_token
-      authenticate_with_cookie( remember_token ) unless Config::SECURE
-      authenticate_with_cookie( *remember_token ) if Config::SECURE
+      authenticate_with_cookie( remember_token ) unless RbConfig::SECURE
+      authenticate_with_cookie( *remember_token ) if RbConfig::SECURE
       #authenticate_with_cookie( session[:user_id] )
     end
 
     def remember_token
-      if Config::SECURE
+      if RbConfig::SECURE
         cookies.signed[:remember_token] || [nil, nil]
       else
         cookies[:remember_token] || nil
