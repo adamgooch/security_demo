@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.13'
 gem 'pg'
-gem 'rack', '1.4.1'
+gem 'rack', '1.4.5'
 
 group :development do
   gem 'rspec-rails', '~> 2.11.0'
@@ -22,7 +22,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'pbkdf2', '~> 0.1.0'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
