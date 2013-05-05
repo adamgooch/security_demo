@@ -1,6 +1,6 @@
 <header id='main-header'>
   <div id='title-container'>
-    <%= link_to (image_tag 'ramekinLogo.png'), root_path  %>
+    <%= link_to "The Community", root_path, :id => 'title' %>
     <ul id='sign-in-links'>
     <% if signed_in? %>
       <li><%= link_to current_user.email, current_user %></li>

@@ -23,7 +23,6 @@ module AuthenticationHelper
     cookies.signed[:remember_token] = { secure: true, value: [ user.id, user.email ] } if Config::SSL
     cookies.signed[:remember_token] = { value: [ user.id, user.email ] } if Config::SECURE
     #cookies.signed[:remember_token] = { path: '/users', value: [ user.id, user.email ] } if Config::SECURE
-    #current_user = user
   end
 
   def current_user=( user )
@@ -50,9 +49,11 @@ module AuthenticationHelper
   private
 
     def user_from_remember_token
-      authenticate_with_cookie( remember_token ) unless Config::SECURE
-      authenticate_with_cookie( *remember_token ) if Config::SECURE
-      #authenticate_with_cookie( session[:user_id] )
+      if Config::SECURE
+        authenticate_with_cookie( *remember_token )
+      else
+        authenticate_with_cookie( remember_token )
+      end
     end
 
     def remember_token

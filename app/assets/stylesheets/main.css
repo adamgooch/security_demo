@@ -107,6 +107,10 @@ footer {
   margin: 0 auto;
 }
 
+#title {
+  font-size: 48px;
+}
+
 #sign-in-links {
   position: absolute;
   right: 80px;

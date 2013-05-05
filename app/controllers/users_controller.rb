@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     @user.email = params[:user][:email].downcase
     @user.password_digest = encrypt_password( @user.password )
     if @user.save
-      flash[:success] = "Welcome to Ramekin Technologies!"
+      login( @user )
+      flash[:success] = "Welcome to The Community!"
       redirect_to @user
     else
       render :new
