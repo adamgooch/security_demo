@@ -8,6 +8,7 @@ development:
   encoding: unicode
   database: rails_security_demo_db_development
   username:
+  password:
   pool: 5
   timeout: 5000
   host: localhost
@@ -20,6 +21,7 @@ test:
   encoding: unicode
   database: rails_security_demo_db_test
   username:
+  password:
   pool: 5
   timeout: 5000
   host: localhost
