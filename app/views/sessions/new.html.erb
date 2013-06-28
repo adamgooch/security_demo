@@ -1,14 +1,13 @@
-<h1>Login</h1>
-<%= form_for :session, :url => post_session_path do |f| %>
-  <div>
-    <%= f.label :email %> <br />
-    <%= f.text_field :email, :placeholder => 'email', :value => @email, :required => true, :class => 'text-field' %> <br />
+<div class='pane'>
+  <h1 class='login-title'>Login to your account</h1>
+  <%= form_for :session, :url => post_session_path, :html => {:id => 'login-form-area'} do |f| %>
+    <%= f.text_field :email, :placeholder => 'email', :value => @email, :required => true, :class => 'text-field' %>
+    <%= f.password_field :password, :placeholder => 'password', :required => true, :class => 'text-field' %>
+    <%= f.check_box :persistent_login %>
+    <%= f.label :persistent_login, 'Remember Me', :class => 'checkbox-text' %>
+    <%= f.submit 'Login', :class => 'login-btn' %> <br />
+  <% end %>
+  <div class='register-link'>
+    <%= link_to 'Register', '#' %>
   </div>
-  <div>
-    <%= f.label :password %> <br />
-    <%= f.password_field :password, :placeholder => 'password', :required => true, :class => 'text-field' %> <br />
-  </div>
-  <div class='center'>
-    <%= f.submit 'Login', :class => 'button' %> <br />
-  </div>
-<% end %>
+</div>

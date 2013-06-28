@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  layout 'clean_layout'
 
   def create
     @email = params[:session][:email]
