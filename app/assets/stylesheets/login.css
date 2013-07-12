@@ -1,0 +1,102 @@
+
+
+body {
+  background: url('kids.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.pane {
+  width: 20em;
+  margin: 17% auto 0 auto;
+  height: auto;
+  border-radius: 5px; 
+  background-color: rgba(0, 0, 0, .6); 
+  padding: 2em;
+  border: 18px solid #000;
+}
+
+.login-title {
+  background-color: rgba(255, 255, 255, 0); 
+  color: #D8D8A8;
+  font-size: 1.75em;
+  margin-bottom: 1em;
+  text-align: center;
+  display: block;
+  border-bottom: 1px solid #333;
+  padding-bottom: .7em;
+}
+
+.login-btn {
+  border: none;
+  font-size: 1.25em;
+  margin: auto;
+  padding: .5em;
+  display: block;
+  border-radius: 8px;
+}
+
+#login-form-area input[type=text]{
+  display: block;
+  border:2px solid #e8e8e8;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.0);
+  margin: .5em auto 2em auto;
+  padding: 10px;
+  border-radius:3px;
+  color: #e8e8e8;
+}
+
+#login-form-area input[type=password]{
+  display: block;
+  border:2px solid #e8e8e8;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.0);
+  margin: .5em auto 2em auto;
+  padding: 10px;
+  border-radius:3px;
+  color: #e8e8e8;
+}
+
+input[type=checkbox]{
+  margin: 0 .5em 0 1.75em;
+  }
+
+.checkbox-text {
+  color: #e8e8e8;
+  display: inline-block
+}
+
+#login-form-area input[type="text"]:focus {
+  border: 2px solid #c0c078;
+  outline: none;
+  -webkit-transition: border linear .2s;
+  -moz-transition: border linear .2s;
+  transition: border linear .2s;
+}
+
+#login-form-area input[type=password]:focus {
+  border: 2px solid #c0c078;
+  outline: none;
+  -webkit-transition: border linear .2s;
+  -moz-transition: border linear .2s;
+  transition: border linear .2s;
+}
+
+.register-link {
+ text-align: right;
+}
+
+.register-link a:link {
+  color: #A890A8;
+}
+
+.register-link a:visited {
+  color: #A890A8;
+}
+
+.register-link a:hover {
+  color: #e0e0e0;
+}
